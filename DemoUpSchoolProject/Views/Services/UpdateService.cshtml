@@ -1,0 +1,14 @@
+﻿@model DemoUpSchoolProject.Models.Entities.TblServices
+@{
+    ViewBag.Title = "UpdateService";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+<form method="post">
+   
+    @Html.HiddenFor(x => x.ServicesID, new { @class = "form-control" })
+    <br />
+    <label>Hizmet Başlığı</label>
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+</form>

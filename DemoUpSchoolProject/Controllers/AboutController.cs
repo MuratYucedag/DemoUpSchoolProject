@@ -7,64 +7,55 @@ using DemoUpSchoolProject.Models.Entities;
 
 namespace DemoUpSchoolProject.Controllers
 {
-    public class ServicesController : Controller
+    public class AboutController : Controller
     {
-        /*
-         ToList
-         Add
-         Remove
-         Where         
-         */
-
         UpSchoolDbPortfolioEntities db = new UpSchoolDbPortfolioEntities();
+        
         public ActionResult Index()
         {
-            var values = db.TblServices.ToList();
+            var values = db.TblAbout.ToList();
             return View(values);
         }
 
         [HttpGet]
-        public ActionResult AddService()
+        public ActionResult AddAbout()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddService(TblServices p)
+        public ActionResult AddAbout(TblAbout p)
         {
-            db.TblServices.Add(p);
+            db.TblAbout.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult DeleteService(int id)
+        public ActionResult DeleteAbout(int id)
         {
-            var values = db.TblServices.Find(id);
-            db.TblServices.Remove(values);
+            var values = db.TblAbout.Find(id);
+            db.TblAbout.Remove(values);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ActionResult UpdateService(int id)
+        public ActionResult UpdateAbout(int id)
         {
-            var values = db.TblServices.Find(id);
+            var values = db.TblAbout.Find(id);
             return View(values);
         }
 
         [HttpPost]
-        public ActionResult UpdateService(TblServices p)
+        public ActionResult UpdateAbout(TblAbout p)
         {
-            var values = db.TblServices.Find(p.ServicesID);
+            var values = db.TblAbout.Find(p.AboutID);
+            values.Description = p.Description;
+            values.ImageUrl = p.ImageUrl;
+            values.NameSurname = p.NameSurname;
             values.Title = p.Title;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
     }
 }
-/*
- entity state
-id güncelleme sayfasında gösterilmeden çalışır mı?
-viewdata, tempdata ve viewbag arasında ne fark var
-first ile firstordafeult arasında ne fark var
- */
