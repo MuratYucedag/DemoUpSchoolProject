@@ -24,6 +24,29 @@
           <Property Name="Password" Type="nvarchar" MaxLength="20" />
           <Property Name="Status" Type="bit" />
         </EntityType>
+        <EntityType Name="TblMember">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="30" />
+          <Property Name="MemberSurname" Type="nvarchar" MaxLength="30" />
+          <Property Name="MemberMail" Type="nvarchar" MaxLength="30" />
+          <Property Name="MemberPassword" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TblMessage">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderMail" Type="nvarchar" MaxLength="30" />
+          <Property Name="ReceiverMail" Type="nvarchar" MaxLength="30" />
+          <Property Name="SenderNameSurname" Type="nvarchar" MaxLength="30" />
+          <Property Name="ReceiverNameSurname" Type="nvarchar" MaxLength="30" />
+          <Property Name="MessageDate" Type="date" />
+          <Property Name="MessageSubject" Type="nvarchar" MaxLength="30" />
+          <Property Name="MessageContent" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
         <EntityType Name="TblServices">
           <Key>
             <PropertyRef Name="ServicesID" />
@@ -53,6 +76,8 @@
         <EntityContainer Name="UpSchoolDbPortfolioModelStoreContainer">
           <EntitySet Name="TblAbout" EntityType="Self.TblAbout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAdmin" EntityType="Self.TblAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMember" EntityType="Self.TblMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMessage" EntityType="Self.TblMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblServices" EntityType="Self.TblServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblServicesFeature" EntityType="Self.TblServicesFeature" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTestimonial" EntityType="Self.TblTestimonial" Schema="dbo" store:Type="Tables" />
@@ -93,6 +118,8 @@
           <EntitySet Name="TblServicesFeature" EntityType="Self.TblServicesFeature" />
           <EntitySet Name="TblAdmin" EntityType="UpSchoolDbPortfolioModel.TblAdmin" />
           <EntitySet Name="TblTestimonial" EntityType="UpSchoolDbPortfolioModel.TblTestimonial" />
+          <EntitySet Name="TblMember" EntityType="UpSchoolDbPortfolioModel.TblMember" />
+          <EntitySet Name="TblMessage" EntityType="UpSchoolDbPortfolioModel.TblMessage" />
         </EntityContainer>
         <EntityType Name="TblAdmin">
           <Key>
@@ -112,6 +139,29 @@
           <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Profession" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Balance" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TblMember">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MemberSurname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MemberMail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MemberPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblMessage">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderMail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiverMail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SenderNameSurname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiverNameSurname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MessageDate" Type="DateTime" Precision="0" />
+          <Property Name="MessageSubject" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MessageContent" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -166,6 +216,31 @@
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="NameSurname" ColumnName="NameSurname" />
                 <ScalarProperty Name="TestimonialID" ColumnName="TestimonialID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMember">
+            <EntityTypeMapping TypeName="UpSchoolDbPortfolioModel.TblMember">
+              <MappingFragment StoreEntitySet="TblMember">
+                <ScalarProperty Name="MemberPassword" ColumnName="MemberPassword" />
+                <ScalarProperty Name="MemberMail" ColumnName="MemberMail" />
+                <ScalarProperty Name="MemberSurname" ColumnName="MemberSurname" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMessage">
+            <EntityTypeMapping TypeName="UpSchoolDbPortfolioModel.TblMessage">
+              <MappingFragment StoreEntitySet="TblMessage">
+                <ScalarProperty Name="MessageContent" ColumnName="MessageContent" />
+                <ScalarProperty Name="MessageSubject" ColumnName="MessageSubject" />
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+                <ScalarProperty Name="ReceiverNameSurname" ColumnName="ReceiverNameSurname" />
+                <ScalarProperty Name="SenderNameSurname" ColumnName="SenderNameSurname" />
+                <ScalarProperty Name="ReceiverMail" ColumnName="ReceiverMail" />
+                <ScalarProperty Name="SenderMail" ColumnName="SenderMail" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -11,6 +11,7 @@ namespace DemoUpSchoolProject.Controllers
     {
         UpSchoolDbPortfolioEntities db = new UpSchoolDbPortfolioEntities();
         
+        [Authorize]
         public ActionResult Index()
         {
             var values = db.TblAbout.ToList();
@@ -59,3 +60,6 @@ namespace DemoUpSchoolProject.Controllers
         }
     }
 }
+/*
+ hata kodları (401 403 404 500 503)
+ */
